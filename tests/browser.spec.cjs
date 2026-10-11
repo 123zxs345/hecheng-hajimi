@@ -65,3 +65,64 @@ test('a delayed dialog close event preserves focus when the player has returned 
   await expect(page.locator('#game')).toBeFocused();await page.waitForTimeout(50);await expect(page.locator('#game')).toBeFocused();
   await page.keyboard.press('Space');await expect(page.locator('#panel')).not.toBeVisible();
 });
+
+async function swipe(session,start,end){
+  await session.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[start]});
+  for(let step=1;step<=8;step++){
+    await session.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:start.x+(end.x-start.x)*step/8,y:start.y+(end.y-start.y)*step/8}]});
+    await new Promise(resolve=>setTimeout(resolve,30));
+  }
+  await session.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+}
+
+test.describe('phone touch controls',()=>{
+  test.use({viewport:{width:393,height:720},isMobile:true,hasTouch:true,deviceScaleFactor:2.75});
+
+  test('the complete portrait game fits the usable screen height and stays aligned after rotation',async({page,context})=>{
+    await cloudFixture(context);await page.goto(origin);await expect.poll(()=>page.evaluate(()=>gameApp?.sprites.filter(s=>s.ready).length)).toBe(11);
+    for(const viewport of [{width:360,height:640},{width:393,height:720},{width:430,height:800}]){
+      await page.setViewportSize(viewport);
+      await expect.poll(()=>page.locator('.game-section').evaluate(element=>element.getBoundingClientRect().bottom)).toBeLessThanOrEqual(viewport.height);
+      expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+    }
+    await page.setViewportSize({width:780,height:390});
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+    await page.setViewportSize({width:393,height:720});
+    await expect.poll(()=>page.evaluate(()=>Math.abs(gameApp.renderer.viewport.scale-document.querySelector('#game').clientWidth/400))).toBeLessThan(.005);
+  });
+
+  test('vertical swipes starting inside the board scroll both ways without dropping a cat',async({page,context})=>{
+    await cloudFixture(context);await page.goto(origin);await expect(page.locator('#wallet-count')).toHaveText('1');
+    const session=await context.newCDPSession(page),box=await page.locator('#game').boundingBox();
+    await swipe(session,{x:box.x+box.width*.5,y:box.y+box.height*.65},{x:box.x+box.width*.5,y:box.y+box.height*.35});
+    await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(60);
+    expect(await page.evaluate(()=>gameApp.core.bodies.length)).toBe(0);
+    await page.waitForTimeout(250);const before=await page.evaluate(()=>scrollY),moved=await page.locator('#game').boundingBox();
+    await swipe(session,{x:moved.x+moved.width*.5,y:280},{x:moved.x+moved.width*.5,y:480});
+    await expect.poll(()=>page.evaluate(()=>scrollY)).toBeLessThan(before);
+    expect(await page.evaluate(()=>gameApp.core.bodies.length)).toBe(0);
+  });
+
+  test('horizontal touch aiming drops once and long mobile dialogs scroll to their actions',async({page,context})=>{
+    const records=new Map();for(let n=1;n<=20;n++){const id='00000000-0000-4000-8000-'+String(n).padStart(12,'0');records.set('browser_test_player_'+id,JSON.stringify({id,nickname:'猫友'+n,best:1000-n,updatedAt:n}));}
+    await cloudFixture(context,records);await page.goto(origin);await expect(page.locator('#wallet-count')).toHaveText('1');
+    const session=await context.newCDPSession(page),box=await page.locator('#game').boundingBox();
+    await swipe(session,{x:box.x+box.width*.4,y:box.y+box.height*.55},{x:box.x+box.width*.7,y:box.y+box.height*.55});
+    await expect.poll(()=>page.evaluate(()=>gameApp.core.bodies.length)).toBe(1);
+    expect(await page.evaluate(()=>scrollY)).toBe(0);
+    expect(await page.evaluate(()=>gameApp.aimX)).toBeGreaterThan(250);
+    await page.locator('#open-support').click();await expect(page.locator('#support-qr')).toBeVisible();
+    const dialog=await page.locator('#panel').boundingBox();
+    await swipe(session,{x:dialog.x+dialog.width*.5,y:dialog.y+dialog.height*.8},{x:dialog.x+dialog.width*.5,y:dialog.y+dialog.height*.35});
+    await expect.poll(()=>page.locator('#panel').evaluate(element=>element.scrollTop)).toBeGreaterThan(50);
+    await page.locator('#submit-support').click();await expect(page.locator('#wallet-count')).toHaveText('2');
+    await expect(page.locator('#dialog-close')).toBeInViewport();await page.locator('#dialog-close').click();
+    await page.locator('#open-wallet').click();await page.locator('#wallet-share').click();
+    await expect(page.locator('#share-link')).toHaveValue(/\/hecheng-hajimi\/\?ref=/);await page.locator('#dialog-close').click();
+    await page.locator('#open-ranking').click();await expect(page.locator('#ranking-panel')).toBeVisible();
+    await expect(page.locator('#ranking-rows tr')).toHaveCount(20);
+    const ranks=await page.locator('#panel').boundingBox();
+    for(let n=0;n<4;n++)await swipe(session,{x:ranks.x+ranks.width*.5,y:ranks.y+ranks.height*.8},{x:ranks.x+ranks.width*.5,y:ranks.y+ranks.height*.3});
+    await expect(page.locator('#ranking-rows tr').last()).toBeInViewport();await expect(page.locator('#dialog-close')).toBeInViewport();
+  });
+});
