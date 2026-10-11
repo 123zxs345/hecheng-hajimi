@@ -13,7 +13,9 @@
       if(!this.configured)throw new Error('排行榜暂未连接，请稍后再来');
       const response=await this.fetch(this.endpoint,{method:'POST',body:new URLSearchParams({user:this.user,secret:this.secret,...fields}),signal:AbortSignal.timeout(8000)});
       if(!response.ok)throw new Error('排行榜暂时连不上，请稍后重试');
-      const result=await response.json();
+      const text=await response.text();
+      if(!text.trim()&&fields.action==='update')return null;
+      let result;try{result=JSON.parse(text);}catch{throw new Error('榜单返回格式不正确');}
       if(result&&typeof result==='object'&&(result.error||result.status==='error'))throw new Error('排行榜连接配置需要更新');
       return result;
     }

@@ -23,7 +23,7 @@ async function fixture(t){
     let body='';for await(const chunk of req)body+=chunk;
     const form=new URLSearchParams(body);requests.push(Object.fromEntries(form));
     if(form.get('user')!=='test-game'||form.get('secret')!=='public-test-key'){res.writeHead(403);res.end(JSON.stringify({error:'wrong account'}));return;}
-    if(form.get('action')==='update'){records.set(form.get('tag'),form.get('value'));res.end(JSON.stringify({status:'success'}));return;}
+    if(form.get('action')==='update'){records.set(form.get('tag'),form.get('value'));res.end();return;}
     if(form.get('action')==='search'){
       const entries=[...records].reverse().filter(([tag])=>tag.startsWith(form.get('tag')));
       const start=Math.max(0,Number(form.get('no'))-1);res.end(JSON.stringify(Object.fromEntries(entries.slice(start,start+Number(form.get('count'))))));return;
@@ -50,6 +50,12 @@ test('Pages export preserves repository paths, real QR and absolute sharing meta
     assert.match(js,/new URL\('\.\/'/);assert.doesNotMatch(js,/prefix:'\/minigame|assetPrefix:'\/minigame/);
     const config=await readFile(join(output,'hosting-config.js'),'utf8');assert.doesNotMatch(config,/SUPPORT_ADMIN_TOKEN|test-game|public-test-key/);
   }finally{await rm(output,{recursive:true,force:true});}
+});
+
+test('TinyWebDB accepts its documented empty update acknowledgement',async t=>{
+  const {cloud}=await fixture(t);const tag='test_hajimi_player_'+id(1);
+  await cloud.write(tag,{id:id(1),nickname:'猫友',best:3});
+  const rows=await cloud.all('test_hajimi_player_');assert.equal(rows.length,1);assert.equal(rows[0].value.best,3);
 });
 
 test('history-wide top 20 includes older scores past the first cloud page',async t=>{
