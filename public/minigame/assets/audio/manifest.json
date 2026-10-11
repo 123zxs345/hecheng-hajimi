@@ -1,0 +1,341 @@
+{
+  "method": "downloaded-recordings",
+  "theme": "曼波与哈吉米",
+  "speechSynthesis": false,
+  "synthesizedByAssistant": false,
+  "downloadedAt": "2026-10-07",
+  "sources": [
+    {
+      "id": "source-0",
+      "title": "Mambo (Matikanetannhauser)",
+      "pageUrl": "https://www.myinstants.com/en/instant/mambo-matikanetannhauser-9303/",
+      "downloadUrl": "https://www.myinstants.com/media/sounds/mambo-matikanetannhauser.mp3",
+      "archiveFile": "assets/audio-originals/mambo/00-mambo-matikanetannhauser-9303.mp3",
+      "sha256": "f11e18efcabd0552dd41651157ce377ec14004e9598eb9a1fb21e06186ea8126",
+      "durationSeconds": 12.721633,
+      "commercialPermission": "unverified",
+      "firstAudibleSeconds": 0.08195011337868481
+    },
+    {
+      "id": "source-1",
+      "title": "Mambo laugh (Matikanetannhauser)",
+      "pageUrl": "https://www.myinstants.com/en/instant/mambo-laugh-matikanetannhauser-50758/",
+      "downloadUrl": "https://www.myinstants.com/media/sounds/mambo-laugh-matikanetannhauser.mp3",
+      "archiveFile": "assets/audio-originals/mambo/01-mambo-laugh-matikanetannhauser-50758.mp3",
+      "sha256": "2e26b0ae50cfb206b31343ba0c96dd4506521f0874fc3fc9c5b37a59496aaee9",
+      "durationSeconds": 3.408027,
+      "commercialPermission": "unverified",
+      "firstAudibleSeconds": 0.2763718820861678
+    },
+    {
+      "id": "source-3",
+      "title": "MAMBO MAMBO",
+      "pageUrl": "https://www.myinstants.com/en/instant/mambo-mambo-11021/",
+      "downloadUrl": "https://www.myinstants.com/media/sounds/mambo-mambo.mp3",
+      "archiveFile": "assets/audio-originals/mambo/03-mambo-mambo-11021.mp3",
+      "sha256": "a18dc7743dc4a40258f5d942d91ccd92a7363d868255518337ebcd3267894344",
+      "durationSeconds": 10.610068,
+      "commercialPermission": "unverified",
+      "firstAudibleSeconds": 5.223174603174603
+    },
+    {
+      "id": "source-4",
+      "title": "MATIKANETANNHAUSER",
+      "pageUrl": "https://www.myinstants.com/en/instant/matikanetannhauser-59857/",
+      "downloadUrl": "https://www.myinstants.com/media/sounds/matikanetannhauser.mp3",
+      "archiveFile": "assets/audio-originals/mambo/04-matikanetannhauser-59857.mp3",
+      "sha256": "37c0f892063a84aff390fbc999e5efbac1c2128ad679cd34b671487c702d47d1",
+      "durationSeconds": 10.052789,
+      "commercialPermission": "unverified",
+      "firstAudibleSeconds": 2.416643990929705
+    },
+    {
+      "id": "source-5",
+      "title": "Hachimi Chimici Mambo",
+      "pageUrl": "https://www.myinstants.com/en/instant/hachimi-chimici-mambo-18876/",
+      "downloadUrl": "https://www.myinstants.com/media/sounds/hachimi-chimici-mambo.mp3",
+      "archiveFile": "assets/audio-originals/mambo/05-hachimi-chimici-mambo-18876.mp3",
+      "sha256": "1787d102fadcf0f23ac7eedbe3b305106992e746dcf26d6984597c945ad66bb1",
+      "durationSeconds": 24.544943,
+      "commercialPermission": "unverified",
+      "firstAudibleSeconds": 0.21215419501133786
+    },
+    {
+      "id": "source-6",
+      "title": "Tokai Teio - Hachimi (short)",
+      "pageUrl": "https://www.myinstants.com/en/instant/tokai-teio-hachimi-short-11583/",
+      "downloadUrl": "https://www.myinstants.com/media/sounds/tokai-teio-hachimi-short.mp3",
+      "archiveFile": "assets/audio-originals/mambo/06-tokai-teio-hachimi-short-11583.mp3",
+      "sha256": "84dbab3037d9b7387c4d8bd2e5a633ddfd2e0eb93486d79944af768e641071cb",
+      "durationSeconds": 0.557506,
+      "commercialPermission": "unverified",
+      "firstAudibleSeconds": 0.1308843537414966
+    },
+    {
+      "id": "source-7",
+      "title": "HACHIMI",
+      "pageUrl": "https://www.myinstants.com/en/instant/hachimi-12910/",
+      "downloadUrl": "https://www.myinstants.com/media/sounds/hachimi_9Csg6v1.mp3",
+      "archiveFile": "assets/audio-originals/mambo/07-hachimi-12910.mp3",
+      "sha256": "f995796f234a1f2aac6f46464c427c0d9c0d02abd30d6109c36e77cb640b9152",
+      "durationSeconds": 6.08,
+      "commercialPermission": "unverified",
+      "firstAudibleSeconds": 0.02104308390022676
+    },
+    {
+      "id": "source-9",
+      "title": "Mambo曼波 诗歌剧Matikanetannhauser",
+      "pageUrl": "https://www.myinstants.com/en/instant/mamboman-bo-shi-ge-ju-matikanetannhauser-9173/",
+      "downloadUrl": "https://www.myinstants.com/media/sounds/mamboman-bo-shi-ge-ju-matikanetannhauser.mp3",
+      "archiveFile": "assets/audio-originals/mambo/09-mamboman-bo-shi-ge-ju-matikanetannhauser-9173.mp3",
+      "sha256": "2c6465963d9a11edc79bd365eee260108090b1bebf7cf6f6cd6332a84d820bed",
+      "durationSeconds": 0.882358,
+      "commercialPermission": "unverified",
+      "firstAudibleSeconds": 0.0004988662131519275
+    },
+    {
+      "id": "source-10",
+      "title": "wow 诗歌剧Matikanetannhauser",
+      "pageUrl": "https://www.myinstants.com/en/instant/wow-shi-ge-ju-matikanetannhauser-39118/",
+      "downloadUrl": "https://www.myinstants.com/media/sounds/wow-shi-ge-ju-matikanetannhauser.mp3",
+      "archiveFile": "assets/audio-originals/mambo/10-wow-shi-ge-ju-matikanetannhauser-39118.mp3",
+      "sha256": "c634507707663113c18bc39353f296617caaef9fc50c4a6234364ae380866f4f",
+      "durationSeconds": 0.998458,
+      "commercialPermission": "unverified",
+      "firstAudibleSeconds": 0.07759637188208617
+    },
+    {
+      "id": "source-11",
+      "title": "Duang 诗歌剧Matikanetannhauser",
+      "pageUrl": "https://www.myinstants.com/en/instant/duang-shi-ge-ju-matikanetannhauser-14560/",
+      "downloadUrl": "https://www.myinstants.com/media/sounds/duang-shi-ge-ju-matikanetannhauser.mp3",
+      "archiveFile": "assets/audio-originals/mambo/11-duang-shi-ge-ju-matikanetannhauser-14560.mp3",
+      "sha256": "975cea34c040497ae16c0257d1e12917802a38e17bf702be5d02a742c3f21dd2",
+      "durationSeconds": 1.114558,
+      "commercialPermission": "unverified",
+      "firstAudibleSeconds": 0.08045351473922903
+    },
+    {
+      "id": "source-12",
+      "title": "OhYey欧耶 诗歌剧Matikanetannhauser",
+      "pageUrl": "https://www.myinstants.com/en/instant/ohyeyou-ye-shi-ge-ju-matikanetannhauser-43408/",
+      "downloadUrl": "https://www.myinstants.com/media/sounds/ohyeyou-ye-shi-ge-ju-matikanetannhauser.mp3",
+      "archiveFile": "assets/audio-originals/mambo/12-ohyeyou-ye-shi-ge-ju-matikanetannhauser-43408.mp3",
+      "sha256": "df41c8868d7fc0fe81aceebd19454db0085ec6f09dc92d08879e6853e3453c70",
+      "durationSeconds": 1.091338,
+      "commercialPermission": "unverified",
+      "firstAudibleSeconds": 0.06267573696145125
+    }
+  ],
+  "cues": [
+    {
+      "id": "mambo",
+      "tier": 1,
+      "final": false,
+      "file": "01-mambo.wav",
+      "label": "礼貌猫 · 曼波",
+      "phrase": "曼波",
+      "sourceId": "source-9",
+      "startSeconds": 0,
+      "durationSeconds": 0.870023,
+      "sha256": "8af7c3d0828b0dc8be23b92084660742288b7b5e80af28edb197d7e363e4c117",
+      "processing": {
+        "gain": 1.699549,
+        "fadeInSeconds": 0.008,
+        "fadeOutSeconds": 0.035,
+        "pitchChanged": false,
+        "speedChanged": false
+      }
+    },
+    {
+      "id": "hachimi",
+      "tier": 2,
+      "final": false,
+      "file": "02-hachimi.wav",
+      "label": "胖橘猫 · 哈吉米",
+      "phrase": "哈吉米短声",
+      "sourceId": "source-6",
+      "startSeconds": 0,
+      "durationSeconds": 0.550023,
+      "sha256": "0774a2f2775173c406031d8858ed6beb02d540faf103f8756e71ccb37c563cde",
+      "processing": {
+        "gain": 0.997788,
+        "fadeInSeconds": 0.008,
+        "fadeOutSeconds": 0.035,
+        "pitchChanged": false,
+        "speedChanged": false
+      }
+    },
+    {
+      "id": "duang",
+      "tier": 3,
+      "final": false,
+      "file": "03-duang.wav",
+      "label": "圆头耄耋 · Duang",
+      "phrase": "诗歌剧 Duang",
+      "sourceId": "source-11",
+      "startSeconds": 0,
+      "durationSeconds": 1.1,
+      "sha256": "1c5015f125fed27ce861c092eef506dc38a9b9d3d9767ff2b06cfbd736b1b1a1",
+      "processing": {
+        "gain": 1.532618,
+        "fadeInSeconds": 0.008,
+        "fadeOutSeconds": 0.035,
+        "pitchChanged": false,
+        "speedChanged": false
+      }
+    },
+    {
+      "id": "wow",
+      "tier": 4,
+      "final": false,
+      "file": "04-wow.wav",
+      "label": "柠檬猫 · 哇哦",
+      "phrase": "诗歌剧哇哦",
+      "sourceId": "source-10",
+      "startSeconds": 0,
+      "durationSeconds": 0.98,
+      "sha256": "6689f7762cd6b746070fd97ce8dc74a5c7f7b0717a6ccb6a97ee4c933f7bcee9",
+      "processing": {
+        "gain": 0.996318,
+        "fadeInSeconds": 0.008,
+        "fadeOutSeconds": 0.035,
+        "pitchChanged": false,
+        "speedChanged": false
+      }
+    },
+    {
+      "id": "oh-yeah",
+      "tier": 5,
+      "final": false,
+      "file": "05-oh-yeah.wav",
+      "label": "蜜蜂猫 · 欧耶",
+      "phrase": "诗歌剧欧耶",
+      "sourceId": "source-12",
+      "startSeconds": 0,
+      "durationSeconds": 1.08,
+      "sha256": "d8d4e91fe8a6a7e97bd38cdbe0293049bbb1a8ef94a6012516900f6add9dce33",
+      "processing": {
+        "gain": 0.75102,
+        "fadeInSeconds": 0.008,
+        "fadeOutSeconds": 0.035,
+        "pitchChanged": false,
+        "speedChanged": false
+      }
+    },
+    {
+      "id": "mambo-laugh",
+      "tier": 6,
+      "final": false,
+      "file": "06-mambo-laugh.wav",
+      "label": "花花猫 · 曼波轻笑",
+      "phrase": "曼波轻笑",
+      "sourceId": "source-1",
+      "startSeconds": 0.22,
+      "durationSeconds": 1.6,
+      "sha256": "1d2598c8715b0483015758aa40254a5853540aee074facd266ebf9be0cd4c989",
+      "processing": {
+        "gain": 0.701904,
+        "fadeInSeconds": 0.008,
+        "fadeOutSeconds": 0.035,
+        "pitchChanged": false,
+        "speedChanged": false
+      }
+    },
+    {
+      "id": "mambo-mambo",
+      "tier": 7,
+      "final": false,
+      "file": "07-mambo-mambo.wav",
+      "label": "熊猫猫 · 曼波曼波",
+      "phrase": "曼波曼波双声",
+      "sourceId": "source-3",
+      "startSeconds": 5.18,
+      "durationSeconds": 2.3,
+      "sha256": "c40539b748cd63a27c965bd2fec6d98f0a9ee13223a63bde4f91c08f09037793",
+      "processing": {
+        "gain": 2.402591,
+        "fadeInSeconds": 0.008,
+        "fadeOutSeconds": 0.035,
+        "pitchChanged": false,
+        "speedChanged": false
+      }
+    },
+    {
+      "id": "hachimi-chant",
+      "tier": 8,
+      "final": false,
+      "file": "08-hachimi-chant.wav",
+      "label": "向日葵猫 · 哈吉米连喊",
+      "phrase": "哈吉米连喊",
+      "sourceId": "source-7",
+      "startSeconds": 0,
+      "durationSeconds": 2.150023,
+      "sha256": "d5d80805f9cdd7fe6ac72a16330cb4a5bc4a73f637228b44ae81610310b248ce",
+      "processing": {
+        "gain": 1.505236,
+        "fadeInSeconds": 0.008,
+        "fadeOutSeconds": 0.035,
+        "pitchChanged": false,
+        "speedChanged": false
+      }
+    },
+    {
+      "id": "festival-mambo",
+      "tier": 9,
+      "final": false,
+      "file": "09-festival-mambo.wav",
+      "label": "圆头妙脆角 · 曼波小曲",
+      "phrase": "曼波小曲",
+      "sourceId": "source-0",
+      "startSeconds": 0,
+      "durationSeconds": 2.750023,
+      "sha256": "e1c08dbdaef37856abe7f50dfc918dabb7c23fadedba0157e71a70e0e7ea6a9c",
+      "processing": {
+        "gain": 1.045597,
+        "fadeInSeconds": 0.008,
+        "fadeOutSeconds": 0.035,
+        "pitchChanged": false,
+        "speedChanged": false
+      }
+    },
+    {
+      "id": "mambo-reaction",
+      "tier": 10,
+      "final": false,
+      "file": "10-mambo-reaction.wav",
+      "label": "妙脆角猫 · 曼波反应",
+      "phrase": "曼波反应音",
+      "sourceId": "source-4",
+      "startSeconds": 2.38,
+      "durationSeconds": 2.849977,
+      "sha256": "9a529677cc645a776b632e96464b6d92c1a3cb3d177fcab2ae71c38ef910a932",
+      "processing": {
+        "gain": 0.954238,
+        "fadeInSeconds": 0.008,
+        "fadeOutSeconds": 0.035,
+        "pitchChanged": false,
+        "speedChanged": false
+      }
+    },
+    {
+      "id": "hajimi-finale",
+      "tier": 10,
+      "final": true,
+      "file": "11-hajimi-finale.wav",
+      "label": "终极合成 · 哈吉米曼波",
+      "phrase": "哈吉米曼波清场",
+      "sourceId": "source-5",
+      "startSeconds": 0.16,
+      "durationSeconds": 3.2,
+      "sha256": "bc6035f01d1d5f7f797ff6c7fbffbca9a19cd0b75c754b4925efdab01b150bc3",
+      "processing": {
+        "gain": 0.701904,
+        "fadeInSeconds": 0.008,
+        "fadeOutSeconds": 0.035,
+        "pitchChanged": false,
+        "speedChanged": false
+      }
+    }
+  ]
+}

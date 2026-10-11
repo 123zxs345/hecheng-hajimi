@@ -1,0 +1,1 @@
+module.exports={testDir:'./tests',testMatch:'*.spec.cjs',workers:1,reporter:'list',use:{browserName:'chromium',headless:true,viewport:{width:1440,height:1000}},webServer:{command:'node scripts/preview.mjs',url:'http://127.0.0.1:4196/hecheng-hajimi/',reuseExistingServer:true}};

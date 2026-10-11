@@ -1,0 +1,8 @@
+{
+  "name": "hecheng-hajimi-pages",
+  "version": "0.2.0",
+  "private": true,
+  "description": "合成哈基米：GitHub Pages 网页版，TinyWebDB 排行榜",
+  "scripts": {"build":"node scripts/build.mjs","test":"node --test tests/pages.test.mjs","preview":"node scripts/preview.mjs"},
+  "engines": {"node": ">=24"}
+}

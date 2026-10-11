@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>合成哈基米 · 小猫碰一碰，快乐翻倍</title>
+  <meta name="description" content="免费的哈基米合成小游戏。拖动瞄准，松手投放，合出更大的小猫。看看前20名，邀请朋友一起玩。">
+  <meta name="theme-color" content="#f8f5eb"><link rel="icon" href="/favicon.svg">
+  <link rel="canonical" href="__ORIGIN__/">
+  <meta property="og:type" content="website"><meta property="og:title" content="合成哈基米">
+  <meta property="og:description" content="小猫碰一碰，快乐翻倍。点开就能玩，一起合出大哈基米！">
+  <meta property="og:url" content="__ORIGIN__/"><meta property="og:image" content="__ORIGIN__/share-cover.jpg">
+  <meta property="og:image:width" content="1200"><meta property="og:image:height" content="632">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="合成哈基米"><meta name="twitter:image" content="__ORIGIN__/share-cover.jpg">
+  <link rel="stylesheet" href="/web/site.css">
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="/"><span class="brand-cat">ฅ</span><strong>合成哈基米</strong><span class="brand-tag">快乐吸猫中</span></a><button class="plain-button" id="open-ranking">排行榜 <span>↗</span></button></header>
+  <main class="studio">
+    <aside class="intro"><div class="eyebrow"><span class="dot"></span> 一只小猫，一点小快乐</div><h1>小猫碰一碰，<br><em>快乐翻倍。</em><span class="doodle">✳</span></h1><p class="lead">拖一拖，松松手。<br>让哈基米们挤在一起，合出更大的惊喜。</p><div class="hero-cats" aria-hidden="true"><img class="cat-a" src="/minigame/assets/hajimi/01-banana.png" alt=""><img class="cat-b" src="/minigame/assets/hajimi/03-orange.png" alt=""><img class="cat-c" src="/minigame/assets/hajimi/09-sunflower.png" alt=""><span class="cat-caption">今天，也想和你贴贴。</span></div>
+    <button id="share-button" class="button primary">分享给朋友 <span>↗</span></button><p class="reward-note">朋友首次合成，你得 1 枚复活币</p>
+    <div class="mini-guide"><span>01 <b>相同小猫，碰撞升级</b></span><span>02 <b>堆过虚线，小心结束</b></span><span>03 <b>用复活币，再合一会</b></span></div><p class="fineprint">免费开玩 · 手机电脑都能玩<br>首次加载需联网，游戏在你的设备上运行</p></aside>
+    <section class="game-section" aria-label="合成哈基米游戏"><div class="game-topline"><span><span class="dot"></span> 合成进行中</span><button id="nickname-button" class="plain-button">设置昵称 ✎</button></div><div class="game-shell"><canvas id="game" width="400" height="800" tabindex="0" role="application" aria-label="合成哈基米，拖动瞄准，松手投放；方向键瞄准，空格投放"></canvas><p id="load-error" hidden>游戏未能加载，请刷新试试。</p></div><div class="game-bottomline"><span><kbd>←</kbd><kbd>→</kbd> 瞄准 · <kbd>空格</kbd> 投放</span><span>慢慢来，猫不会跑 ☺</span></div><output id="game-status" class="sr-only" aria-live="polite"></output></section>
+    <aside class="side"><section class="wallet-card"><div class="card-label">我的复活小金库 <span>✦</span></div><div class="wallet-value"><span class="coin">↻</span><strong id="wallet-count">—</strong><span>枚复活币</span></div><p>清掉上层，再给小猫一次机会。<br>每局最多复活一次。</p><button id="open-wallet" class="button mint">领取复活币 <span>＋</span></button><p id="service-status" class="subtle">正在连接小金库…</p></section>
+    <section class="ranking-card"><div class="card-label">哈基米高手榜 <span class="badge">TOP 20</span></div><div id="ranking-preview" class="rank-preview"><p class="subtle">正在看看谁最会吸猫…</p></div><button id="all-ranking" class="text-link">查看前 20 名 <span>→</span></button><p class="subtle">全体玩家的历史最高分</p></section>
+    <section class="support-card"><span class="snack">♥</span><div><h2>给快乐加点辣</h2><p>如果玩得开心，<br>可以请作者吃一根辣条。</p></div><button id="open-support" class="button">请作者吃一根辣条 <span>♡</span></button><p class="subtle">金额随心 · 完全自愿 · 确认支持赠 1 币</p></section></aside>
+  </main>
+  <footer>合成哈基米 <span>·</span> 一点小快乐，随手分享给朋友 <span class="footer-cat">ฅ^•ﻌ•^ฅ</span></footer>
+  <dialog id="panel" aria-labelledby="panel-title"><div class="dialog-heading"><h2 id="panel-title"></h2><button id="dialog-close" class="close-button" aria-label="关闭弹窗">×</button></div>
+    <section id="share-panel" hidden><p>好玩的东西，当然要一起玩。</p><img id="share-cover" src="/share-cover.jpg" alt="合成哈基米分享封面"><label for="share-link">你的专属邀请链接</label><input id="share-link" readonly><div class="two-actions"><button id="copy-link" class="button primary">复制邀请链接</button><button id="native-share" class="button">直接分享 ↗</button></div><a class="button download" href="/share-cover.jpg" download="合成哈基米-分享封面.jpg">保存封面图片 ↓</a><p class="explanation">把封面和链接一起发给朋友。新朋友打开链接并完成第一次合成，你就获得 1 枚复活币，每天最多 5 枚。复制链接或取消分享不会直接发币。</p><p class="subtle">在微信里，也可以点右上角菜单分享；想让微信链接卡片自动显示封面，需要接入已认证公众号的分享配置。</p></section>
+    <section id="wallet-panel" hidden><div class="big-coin">↻</div><p class="wallet-copy">我的复活币：<strong id="wallet-detail">—</strong> 枚</p><p>用 1 枚复活币清理上层的小猫，接着挑战。<br>每局最多使用一次。</p><button id="wallet-share" class="button primary">邀请朋友，领取复活币 ↗</button><button id="wallet-support" class="button">请作者吃辣条 ♡</button><p class="explanation">新玩家获得 1 枚初始复活币。邀请新朋友首次合成，每位朋友赠 1 枚；自愿支持后，点击确认立即赠 1 枚，每天可领一次。免费游玩不需要打赏。</p></section>
+    <section id="ranking-panel" hidden><p>只展示真实玩家的历史最高分，快来留下你的名字。</p><div class="ranking-toolbar"><span id="ranking-count"></span><button id="refresh-ranking" class="text-link">刷新 ↻</button></div><table class="ranking-table"><thead><tr><th>排名</th><th>玩家</th><th>最高分</th></tr></thead><tbody id="ranking-rows"></tbody></table><p id="ranking-empty" class="empty-state" hidden>还没有成绩，第一位高手会是谁呢？</p><p id="ranking-error" class="empty-state" hidden>榜单暂时连不上。你可以继续合成，稍后再来。</p></section>
+    <section id="nickname-panel" hidden><p>给榜单上的自己，取个可爱的名字。</p><label for="nickname">你的昵称</label><input id="nickname" maxlength="12" autocomplete="nickname" placeholder="比如：橘猫大王"><button id="save-nickname" class="button primary">保存昵称</button><p class="subtle">最多 12 个字。昵称会出现在公开榜单上。</p></section>
+    <section id="support-panel" hidden><div class="support-message"><strong>请作者吃一根辣条 ♡</strong><p>多少都好，心意收到。谢谢你喜欢这个小游戏。</p></div><div id="support-empty" class="empty-state">作者还没放上收款码，暂时无法打赏。<br>先继续吸猫吧，免费玩也很开心。</div><img id="support-qr" alt="作者的真实收款码" hidden><p id="support-instructions" hidden>保存收款码，用微信扫一扫付款，金额由你自己填写。</p><a class="button download" href="/support/wechat-pay.jpg" download="合成哈基米-作者收款码.jpg">保存收款码 ↓</a><button id="submit-support" class="button primary" disabled>我已支持，领取 1 枚复活币</button><p class="explanation">完全自愿，金额不限，不影响正常游玩。不需要交易单号，也无需等待审核；按你的确认立即赠送 1 枚感谢复活币，每位玩家每天可领一次。网页不会检测或核实付款到账。</p><p id="support-status" role="status">确认支持后立即赠币，每位玩家每天可领取一次。</p></section>
+  </dialog>
+  <output id="toast" role="status" aria-live="polite" hidden></output>
+  <script src="./hosting-config.js"></script><script src="./web/tinywebdb.js"></script><script src="./web/pages-service.js"></script>
+  <script src="/minigame/libs/matter.min.js"></script><script src="/minigame/config.js"></script><script src="/minigame/js/core.js"></script><script src="/minigame/js/ad-service.js"></script><script src="/minigame/js/renderer.js"></script><script src="/minigame/js/friend-ranking.js"></script><script src="/minigame/js/app.js"></script><script src="/minigame/js/sound-bank.js"></script><script src="/minigame/js/music-player.js"></script><script src="/web/site.js"></script>
+</body></html>
