@@ -14,3 +14,11 @@ test('a rejected old play promise cannot cancel the replacement track',async()=>
   const music=new Music({file:'one.mp3',createAudio:()=>audio});music.setPlaying(true);music.setTrack('two.mp3');reject(Error('old blocked'));await Promise.resolve();
   assert.equal(music.playing,true);music.destroy();assert.equal(music.playing,false);
 });
+test('a user volume applies before playback, changes immediately, and survives switching tracks',()=>{
+  let plays=0;const audio={pause(){},play(){plays++;return Promise.resolve();}};
+  const music=new Music({file:'one.mp3',volume:.36,createAudio:()=>audio});
+  music.setVolume(.62);music.setPlaying(true);assert.equal(audio.volume,.62);
+  music.setVolume(0);assert.equal(audio.volume,0);assert.equal(plays,1);
+  music.setTrack('two.mp3');assert.equal(audio.volume,0);
+  music.setVolume(.41);assert.equal(audio.volume,.41);assert.equal(music.playing,true);
+});

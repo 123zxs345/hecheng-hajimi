@@ -1,72 +1,100 @@
 {
-  "file": "hajimi-loop.mp3",
+  "file": "hajimi-v5.mp3",
   "label": "哈吉米循环背景音乐",
   "sourcePage": "https://www.majiabin.com/2853.html",
   "originalUrl": "https://www.majiabin.com/AI/hajimi.mp3",
   "archiveFile": "assets/audio-originals/hajimi-majiabin.mp3",
   "originalSha256": "c11b0dfea8f3f9c727077367232a4e5b9780583dea7db8398709732fcba1cad1",
-  "sha256": "07cfb86a010a23220e335c433eecd51071c6ce8da0b91d8b3f0302351bcac5d6",
+  "sha256": "842de465dfa0cfbeab9c75f4935773eb92619f49d4e7787d99b8a687ea18d416",
   "durationSeconds": 20.38,
-  "volume": 0.18,
+  "volume": 0.36,
   "loop": true,
   "synthesizedByAssistant": false,
-  "processing": "Existing recording, mono MP3 compression, tiny edge fades; original pitch and speed retained",
+  "processing": "Existing recordings normalized to the same perceived loudness; no new composition or synthesized voice",
   "commercialPermission": "unverified",
   "downloadedAt": "2026-10-07",
   "tracks": [
     {
       "id": "hajimi",
       "label": "哈基米原曲",
-      "file": "hajimi-loop.mp3",
+      "file": "hajimi-v5.mp3",
       "durationSeconds": 20.38,
-      "sha256": "07cfb86a010a23220e335c433eecd51071c6ce8da0b91d8b3f0302351bcac5d6",
-      "sourcePage": "https://www.majiabin.com/2853.html"
+      "sha256": "842de465dfa0cfbeab9c75f4935773eb92619f49d4e7787d99b8a687ea18d416",
+      "sourcePage": "https://www.majiabin.com/2853.html",
+      "archiveFile": "assets/audio-originals/hajimi-majiabin.mp3",
+      "originalSha256": "c11b0dfea8f3f9c727077367232a4e5b9780583dea7db8398709732fcba1cad1",
+      "synthesizedByAssistant": false,
+      "processing": "Existing recording, two-pass EBU R128 loudness normalization, MP3 compression and short edge fades; original melody, pitch and speed retained",
+      "loudness": {
+        "targetLufs": -14,
+        "measuredLufs": -14.01,
+        "truePeakDb": -3.55
+      }
     },
     {
       "id": "mambo",
       "label": "哈基米·Wake",
       "originalSong": "Wake — Hillsong Young & Free",
-      "file": "hajimi-wake-v4.mp3",
+      "file": "hajimi-wake-v5.mp3",
       "durationSeconds": 255.08,
       "sourcePage": "https://www.bilibili.com/video/BV1UkW3zdEMw/",
       "sourceTitle": "【哈基米音乐】Wake",
       "creator": "慎啸",
       "archiveFile": "assets/audio-originals/cheerful-hajimi/hajimi-wake.m4a",
       "originalSha256": "6426fdca9f9346c547d0aa87e6c64bdbc0293a60b2005672560238433484c291",
-      "sha256": "519ffb89b4bd40216dd1314b39a9499199cc5428a16bb3a0c8f9fe30285f1c14",
+      "sha256": "83729c6348317a4170110e90ed18f80b089becc1b0354d4436914de703df92ae",
       "synthesizedByAssistant": false,
-      "processing": "Complete existing recording; volume normalization, MP3 compression and 80/120 ms edge fades; original melody, pitch and speed retained",
+      "processing": "Existing recording, two-pass EBU R128 loudness normalization, MP3 compression and short edge fades; original melody, pitch and speed retained",
       "commercialPermission": "unverified",
-      "downloadedAt": "2026-10-12"
+      "downloadedAt": "2026-10-12",
+      "loudness": {
+        "targetLufs": -14,
+        "measuredLufs": -14.0,
+        "truePeakDb": -3.24
+      }
     },
     {
       "id": "hachimi-mambo",
       "label": "哈基米曼波",
-      "file": "hachimi-mambo-loop.mp3",
+      "file": "hachimi-mambo-v5.mp3",
       "durationSeconds": 24.544943,
-      "sha256": "191cb00343d545c1aa5f62b79df2130b8165c6494a28222d5dd120f442b027cb",
+      "sha256": "684b0b033f69b2ed657da83f98b49eb22a453b494ba1f0b9165ae14a95e8c06c",
       "sourcePage": "https://www.myinstants.com/en/instant/hachimi-chimici-mambo-18876/",
       "archiveFile": "assets/audio-originals/mambo/05-hachimi-chimici-mambo-18876.mp3",
-      "commercialPermission": "unverified"
+      "commercialPermission": "unverified",
+      "originalSha256": "1787d102fadcf0f23ac7eedbe3b305106992e746dcf26d6984597c945ad66bb1",
+      "synthesizedByAssistant": false,
+      "processing": "Existing recording, two-pass EBU R128 loudness normalization, MP3 compression and short edge fades; original melody, pitch and speed retained",
+      "loudness": {
+        "targetLufs": -14,
+        "measuredLufs": -13.98,
+        "truePeakDb": -4.16
+      }
     },
     {
       "id": "hachimi-extended",
       "label": "青米（青鸟）",
       "originalSong": "ブルーバード（青鸟）— いきものがかり",
-      "file": "hajimi-bluebird-v4.mp3",
+      "file": "hajimi-bluebird-v5.mp3",
       "durationSeconds": 98.5,
       "sourcePage": "https://www.bilibili.com/video/BV1iixTzwEYJ/",
       "sourceTitle": "【哈基米音乐】青米（青鸟）",
       "creator": "慎啸",
       "archiveFile": "assets/audio-originals/cheerful-hajimi/hajimi-bluebird.m4a",
       "originalSha256": "6b681ecb0241a0faf99eaac1e93ab74b48bcd89ca81792f398461fa43484a067",
-      "sha256": "2178c6b280b6da82d87a3687834de74246095992ffd6e076c85c55075b436826",
+      "sha256": "9065395d12f7a81b793815b2ac105870a4ded974f411eb55dfbc7fcb4f2f7a4f",
       "synthesizedByAssistant": false,
-      "processing": "Complete existing recording; volume normalization, MP3 compression and 80/120 ms edge fades; original melody, pitch and speed retained",
+      "processing": "Existing recording, two-pass EBU R128 loudness normalization, MP3 compression and short edge fades; original melody, pitch and speed retained",
       "commercialPermission": "unverified",
-      "downloadedAt": "2026-10-12"
+      "downloadedAt": "2026-10-12",
+      "loudness": {
+        "targetLufs": -14,
+        "measuredLufs": -14.0,
+        "truePeakDb": -3.66
+      }
     }
   ],
   "updatedAt": "2026-10-12",
-  "processingAdditionalTracks": "Existing complete recordings, no assistant composition or synthesis; source information recorded per track"
+  "processingAdditionalTracks": "Four existing recordings normalized together; user-adjustable playback volume, default 36%",
+  "loudnessTargetLufs": -14
 }

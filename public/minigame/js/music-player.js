@@ -38,6 +38,12 @@
       } catch (_) { this.playing = false; }
     }
 
+    setVolume(volume) {
+      if(this.destroyed||!Number.isFinite(volume))return;
+      this.options.volume=Math.max(0,Math.min(1,volume));
+      if(this.audio)this.audio.volume=this.options.volume;
+    }
+
     setTrack(file) {
       if(this.destroyed||!file||file===this.options.file)return;
       const resume=this.playing;this.setPlaying(false);++this.generation;this.options.file=file;

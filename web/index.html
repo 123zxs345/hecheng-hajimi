@@ -11,13 +11,14 @@
   <meta property="og:url" content="__ORIGIN__/"><meta property="og:image" content="__ORIGIN__/share-cover.jpg">
   <meta property="og:image:width" content="1200"><meta property="og:image:height" content="632">
   <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="合成哈基米"><meta name="twitter:image" content="__ORIGIN__/share-cover.jpg">
-  <link rel="stylesheet" href="/web/site.css?v=20261012-v3">
+  <link rel="stylesheet" href="/web/site.css?v=20261012-music-v5">
 </head>
 <body>
   <header class="site-header"><a class="brand" href="/"><span class="brand-cat">ฅ</span><strong>合成哈基米</strong></a><button class="plain-button" id="open-ranking">排行榜 ↗</button></header>
   <main class="studio">
     <section class="game-section" aria-label="合成哈基米游戏">
       <div class="play-toolbar"><button id="nickname-button" class="control nickname-control">猫友 · 改名 ✎</button><button id="sound-toggle" class="control" aria-pressed="true">音效：开</button><label class="music-control"><span class="sr-only">背景音乐</span><select id="music-select" aria-label="切换哈基米背景音乐"></select></label></div>
+      <div class="music-volume-control"><label for="music-volume">音乐音量</label><input id="music-volume" type="range" min="0" max="100" step="1" value="36"><output id="music-volume-value" for="music-volume">36%</output></div>
       <div class="game-hud"><div class="score-card"><span>本局分数</span><strong id="score-current">0</strong></div><div class="score-card"><span>最高纪录</span><strong id="score-best">0</strong></div></div>
       <div class="next-cats"><span><img id="current-cat" alt=""> <b id="current-cat-name"></b></span><span>下一只 <img id="next-cat" alt=""></span></div>
       <div class="game-shell"><canvas id="game" width="400" height="448" tabindex="0" role="application" aria-label="左右拖动瞄准，松手投放；上下滑动页面；方向键瞄准，空格投放"></canvas><p id="load-error" hidden>游戏未能加载，请刷新试试。</p>
@@ -42,5 +43,5 @@
   </dialog>
   <output id="toast" role="status" aria-live="polite" hidden></output>
   <script src="./hosting-config.js"></script><script src="./web/tinywebdb.js?v=20261012-v3"></script><script src="./web/pages-service.js?v=20261012-v3"></script><script src="./web/analytics.js?v=20261012-v3"></script>
-  <script src="/minigame/libs/matter.min.js"></script><script src="/minigame/config.js?v=20261012-music-v4"></script><script src="/minigame/js/core.js"></script><script src="/minigame/js/ad-service.js"></script><script src="/minigame/js/renderer.js"></script><script src="./web/game-renderer.js?v=20261012-v3"></script><script src="/minigame/js/friend-ranking.js"></script><script src="/minigame/js/app.js"></script><script src="/minigame/js/sound-bank.js"></script><script src="/minigame/js/music-player.js?v=20261012-v3"></script><script src="/web/site.js?v=20261012-v3"></script>
+  <script src="/minigame/libs/matter.min.js"></script><script src="/minigame/config.js?v=20261012-music-v5"></script><script src="/minigame/js/core.js"></script><script src="/minigame/js/ad-service.js"></script><script src="/minigame/js/renderer.js"></script><script src="./web/game-renderer.js?v=20261012-v3"></script><script src="/minigame/js/friend-ranking.js"></script><script src="/minigame/js/app.js"></script><script src="/minigame/js/sound-bank.js"></script><script src="/minigame/js/music-player.js?v=20261012-music-v5"></script><script src="/web/site.js?v=20261012-music-v5"></script>
 </body></html>

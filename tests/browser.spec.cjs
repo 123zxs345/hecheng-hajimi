@@ -129,6 +129,26 @@ test.describe('phone touch controls',()=>{
 
 test.describe('simplified game and activity',()=>{
   test.use({viewport:{width:393,height:720},isMobile:true,hasTouch:true});
+  test('music volume is visible, adjusts actual audio independently, and persists across tracks and reloads',async({page,context})=>{
+    await cloudFixture(context);await page.goto(origin);
+    const slider=page.getByRole('slider',{name:'音乐音量'});
+    await expect(slider).toBeInViewport();await expect(slider).toHaveValue('36');
+    await page.locator('#music-select').selectOption('mambo');
+    await slider.fill('62');await slider.dispatchEvent('input');
+    await expect(page.locator('#music-volume-value')).toHaveText('62%');
+    await expect.poll(()=>page.evaluate(()=>gameApp.platform.music.audio?.volume)).toBe(.62);
+    await expect(page.locator('#sound-toggle')).toHaveAttribute('aria-pressed','true');
+    await page.locator('#music-select').selectOption('hachimi-extended');
+    await expect.poll(()=>page.evaluate(()=>gameApp.platform.music.audio?.volume)).toBe(.62);
+    await slider.fill('0');await slider.dispatchEvent('input');
+    await expect.poll(()=>page.evaluate(()=>gameApp.platform.music.audio?.volume)).toBe(0);
+    await page.reload();await expect(slider).toHaveValue('0');await expect(page.locator('#music-volume-value')).toHaveText('0%');
+    await slider.fill('45');await slider.dispatchEvent('input');
+    await expect.poll(()=>page.evaluate(()=>gameApp.platform.music.audio?.volume)).toBe(.45);
+    await expect.poll(()=>page.evaluate(()=>gameApp.platform.music.audio?.paused)).toBe(false);
+    await page.reload();await expect(slider).toHaveValue('45');
+    await page.screenshot({path:'../../docs/screenshots/hajimi-music-volume-mobile.png'});
+  });
   test('the board and sprites grow proportionally and the name/audio/music controls are visible',async({page,context})=>{
     await cloudFixture(context);await page.goto(origin);await expect(page.locator('#sound-toggle')).toBeInViewport();
     await expect(page.locator('#music-select')).toBeInViewport();await expect(page.locator('#nickname-button')).toContainText('改名');
@@ -138,9 +158,9 @@ test.describe('simplified game and activity',()=>{
     await page.locator('#sound-toggle').click();await expect(page.locator('#sound-toggle')).toHaveAttribute('aria-pressed','false');
     await page.locator('#music-select').selectOption('hachimi-extended');
     await expect.poll(()=>page.evaluate(()=>gameApp.platform.music.audio?.duration)).toBeGreaterThan(97);
-    await expect.poll(()=>page.evaluate(()=>gameApp.platform.music.audio?.src)).toMatch(/hajimi-bluebird-v4.mp3$/);
+    await expect.poll(()=>page.evaluate(()=>gameApp.platform.music.audio?.src)).toMatch(/hajimi-bluebird-v5.mp3$/);
     await page.locator('#music-select').selectOption('mambo');
-    await expect.poll(()=>page.evaluate(()=>gameApp.platform.music.audio?.src)).toMatch(/hajimi-wake-v4.mp3$/);
+    await expect.poll(()=>page.evaluate(()=>gameApp.platform.music.audio?.src)).toMatch(/hajimi-wake-v5.mp3$/);
     await expect.poll(()=>page.evaluate(()=>gameApp.platform.music.audio?.duration)).toBeGreaterThan(254);
     await expect.poll(()=>page.evaluate(()=>gameApp.platform.music.audio?.paused)).toBe(false);
     await page.reload();await expect(page.locator('#music-select')).toHaveValue('mambo');await expect(page.locator('#sound-toggle')).toHaveAttribute('aria-pressed','false');

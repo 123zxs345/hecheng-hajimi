@@ -56,6 +56,11 @@
   const canvas=$('game');
   const sounds=new window.FrogSoundBank({prefix:'./minigame/assets/audio/',createAudio:()=>new Audio(),volume:.55});
   const music=new window.HajimiMusic({file:'./minigame/'+window.GoofyConfig.music.file,volume:window.GoofyConfig.music.volume,createAudio:()=>new Audio()});
+  let musicVolume=window.GoofyConfig.music.volume;
+  try{const stored=localStorage.getItem('hajimi.music.volume.v1');if(stored!==null&&stored.trim()!==''&&Number.isFinite(Number(stored)))musicVolume=Math.max(0,Math.min(1,Number(stored)));}catch{}
+  music.setVolume(musicVolume);
+  function showMusicVolume(){const percent=Math.round(musicVolume*100);$('music-volume').value=String(percent);$('music-volume-value').textContent=percent+'%';}
+  showMusicVolume();
   const tracks=window.GoofyConfig.music.tracks;let selectedTrack=tracks[0];
   try{selectedTrack=tracks.find(track=>track.id===localStorage.getItem('hajimi.music.track.v1'))||selectedTrack;}catch{}
   for(const track of [...tracks,{id:'off',label:'关闭音乐'}]){const option=document.createElement('option');option.value=track.id;option.textContent=track.label;$('music-select').append(option);}
@@ -92,6 +97,7 @@
     $('pause-game').onclick=()=>{sampleActivity();app.action('pause');};$('resume-game').onclick=()=>{analytics.interact();app.action('resume');};
     $('result-restart').onclick=$('confirm-restart').onclick=()=>app.action('confirm-restart');$('result-revive').onclick=()=>app.revive();
     $('sound-toggle').onclick=()=>{app.audioUnlocked=true;app.action('settings-sound');updateControls(app);};
+    $('music-volume').oninput=()=>{musicVolume=Number($('music-volume').value)/100;music.setVolume(musicVolume);showMusicVolume();try{localStorage.setItem('hajimi.music.volume.v1',String(musicVolume));}catch{}app.audioUnlocked=true;app.syncMusic();};
     $('music-select').onchange=()=>{const track=tracks.find(track=>track.id===$('music-select').value);app.audioUnlocked=true;app.musicEnabled=!!track;if(track){selectedTrack=track;music.setTrack('./minigame/'+track.file);try{localStorage.setItem('hajimi.music.track.v1',track.id);}catch{}}app.muted=!app.musicEnabled&&!app.soundEnabled;app.syncMusic();app.save();updateControls(app);};
     app.revive=async()=>{
       if(app.core.state!=='gameover'||app.core.revived||app.adBusy)return;
