@@ -136,7 +136,13 @@ test.describe('simplified game and activity',()=>{
     expect(box.height/box.width).toBeCloseTo(448/400,1);
     await expect.poll(()=>page.evaluate(()=>gameApp.sprites.filter(sprite=>sprite.ready).length)).toBe(11);await page.screenshot({path:'../../docs/screenshots/hajimi-v3-mobile.png'});
     await page.locator('#sound-toggle').click();await expect(page.locator('#sound-toggle')).toHaveAttribute('aria-pressed','false');
-    await page.locator('#music-select').selectOption('mambo');await expect.poll(()=>page.evaluate(()=>gameApp.platform.music.audio?.src)).toMatch(/mambo-loop.mp3$/);
+    await page.locator('#music-select').selectOption('hachimi-extended');
+    await expect.poll(()=>page.evaluate(()=>gameApp.platform.music.audio?.duration)).toBeGreaterThan(97);
+    await expect.poll(()=>page.evaluate(()=>gameApp.platform.music.audio?.src)).toMatch(/hajimi-bluebird-v4.mp3$/);
+    await page.locator('#music-select').selectOption('mambo');
+    await expect.poll(()=>page.evaluate(()=>gameApp.platform.music.audio?.src)).toMatch(/hajimi-wake-v4.mp3$/);
+    await expect.poll(()=>page.evaluate(()=>gameApp.platform.music.audio?.duration)).toBeGreaterThan(254);
+    await expect.poll(()=>page.evaluate(()=>gameApp.platform.music.audio?.paused)).toBe(false);
     await page.reload();await expect(page.locator('#music-select')).toHaveValue('mambo');await expect(page.locator('#sound-toggle')).toHaveAttribute('aria-pressed','false');
   });
   test('game over directly offers share revival and a voluntary packet of spicy sticks',async({page,context})=>{

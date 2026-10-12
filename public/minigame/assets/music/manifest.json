@@ -24,13 +24,20 @@
     },
     {
       "id": "mambo",
-      "label": "曼波小曲",
-      "file": "mambo-loop.mp3",
-      "durationSeconds": 12.721633,
-      "sha256": "db5da812bea22fe5491beaaacaa6707f03489bffecebf7a60431da9d2c075488",
-      "sourcePage": "https://www.myinstants.com/en/instant/mambo-matikanetannhauser-9303/",
-      "archiveFile": "assets/audio-originals/mambo/00-mambo-matikanetannhauser-9303.mp3",
-      "commercialPermission": "unverified"
+      "label": "哈基米·Wake",
+      "originalSong": "Wake — Hillsong Young & Free",
+      "file": "hajimi-wake-v4.mp3",
+      "durationSeconds": 255.08,
+      "sourcePage": "https://www.bilibili.com/video/BV1UkW3zdEMw/",
+      "sourceTitle": "【哈基米音乐】Wake",
+      "creator": "慎啸",
+      "archiveFile": "assets/audio-originals/cheerful-hajimi/hajimi-wake.m4a",
+      "originalSha256": "6426fdca9f9346c547d0aa87e6c64bdbc0293a60b2005672560238433484c291",
+      "sha256": "519ffb89b4bd40216dd1314b39a9499199cc5428a16bb3a0c8f9fe30285f1c14",
+      "synthesizedByAssistant": false,
+      "processing": "Complete existing recording; volume normalization, MP3 compression and 80/120 ms edge fades; original melody, pitch and speed retained",
+      "commercialPermission": "unverified",
+      "downloadedAt": "2026-10-12"
     },
     {
       "id": "hachimi-mambo",
@@ -44,15 +51,22 @@
     },
     {
       "id": "hachimi-extended",
-      "label": "哈基米连唱",
-      "file": "hachimi-extended-loop.mp3",
-      "durationSeconds": 11.498685,
-      "sha256": "80ae3c238ce43b0312c7967646e19727618ff66ff652f5ffc5294673d1b69734",
-      "sourcePage": "https://www.myinstants.com/en/instant/teio-hachimi-extended-64795/",
-      "archiveFile": "assets/audio-originals/mambo/08-teio-hachimi-extended-64795.mp3",
-      "commercialPermission": "unverified"
+      "label": "青米（青鸟）",
+      "originalSong": "ブルーバード（青鸟）— いきものがかり",
+      "file": "hajimi-bluebird-v4.mp3",
+      "durationSeconds": 98.5,
+      "sourcePage": "https://www.bilibili.com/video/BV1iixTzwEYJ/",
+      "sourceTitle": "【哈基米音乐】青米（青鸟）",
+      "creator": "慎啸",
+      "archiveFile": "assets/audio-originals/cheerful-hajimi/hajimi-bluebird.m4a",
+      "originalSha256": "6b681ecb0241a0faf99eaac1e93ab74b48bcd89ca81792f398461fa43484a067",
+      "sha256": "2178c6b280b6da82d87a3687834de74246095992ffd6e076c85c55075b436826",
+      "synthesizedByAssistant": false,
+      "processing": "Complete existing recording; volume normalization, MP3 compression and 80/120 ms edge fades; original melody, pitch and speed retained",
+      "commercialPermission": "unverified",
+      "downloadedAt": "2026-10-12"
     }
   ],
   "updatedAt": "2026-10-12",
-  "processingAdditionalTracks": "Existing archived recordings; mono compression and short edge fades; original pitch and speed retained"
+  "processingAdditionalTracks": "Existing complete recordings, no assistant composition or synthesis; source information recorded per track"
 }

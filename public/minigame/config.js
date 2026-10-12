@@ -11,9 +11,9 @@
     referenceAssets: ['hajimi/01-banana.png', 'hajimi/02-polite.png', 'hajimi/03-orange.png', 'hajimi/04-maodie.png', 'hajimi/05-lemon.png', 'hajimi/06-bee.png', 'hajimi/07-flower.png', 'hajimi/08-panda.png', 'hajimi/09-sunflower.png', 'hajimi/10-round-miaocuijiao.png', 'hajimi/11-miaocuijiao.png'],
     music: { file: 'assets/music/hajimi-loop.mp3', volume: 0.18, tracks: [
       {id:'hajimi',label:'哈基米原曲',file:'assets/music/hajimi-loop.mp3'},
-      {id:'mambo',label:'曼波小曲',file:'assets/music/mambo-loop.mp3'},
+      {id:'mambo',label:'哈基米·Wake',file:'assets/music/hajimi-wake-v4.mp3'},
       {id:'hachimi-mambo',label:'哈基米曼波',file:'assets/music/hachimi-mambo-loop.mp3'},
-      {id:'hachimi-extended',label:'哈基米连唱',file:'assets/music/hachimi-extended-loop.mp3'},
+      {id:'hachimi-extended',label:'青米（青鸟）',file:'assets/music/hajimi-bluebird-v4.mp3'},
     ] },
     width: 400,
     height: 800,
