@@ -12,5 +12,47 @@
   "synthesizedByAssistant": false,
   "processing": "Existing recording, mono MP3 compression, tiny edge fades; original pitch and speed retained",
   "commercialPermission": "unverified",
-  "downloadedAt": "2026-10-07"
+  "downloadedAt": "2026-10-07",
+  "tracks": [
+    {
+      "id": "hajimi",
+      "label": "哈基米原曲",
+      "file": "hajimi-loop.mp3",
+      "durationSeconds": 20.38,
+      "sha256": "07cfb86a010a23220e335c433eecd51071c6ce8da0b91d8b3f0302351bcac5d6",
+      "sourcePage": "https://www.majiabin.com/2853.html"
+    },
+    {
+      "id": "mambo",
+      "label": "曼波小曲",
+      "file": "mambo-loop.mp3",
+      "durationSeconds": 12.721633,
+      "sha256": "db5da812bea22fe5491beaaacaa6707f03489bffecebf7a60431da9d2c075488",
+      "sourcePage": "https://www.myinstants.com/en/instant/mambo-matikanetannhauser-9303/",
+      "archiveFile": "assets/audio-originals/mambo/00-mambo-matikanetannhauser-9303.mp3",
+      "commercialPermission": "unverified"
+    },
+    {
+      "id": "hachimi-mambo",
+      "label": "哈基米曼波",
+      "file": "hachimi-mambo-loop.mp3",
+      "durationSeconds": 24.544943,
+      "sha256": "191cb00343d545c1aa5f62b79df2130b8165c6494a28222d5dd120f442b027cb",
+      "sourcePage": "https://www.myinstants.com/en/instant/hachimi-chimici-mambo-18876/",
+      "archiveFile": "assets/audio-originals/mambo/05-hachimi-chimici-mambo-18876.mp3",
+      "commercialPermission": "unverified"
+    },
+    {
+      "id": "hachimi-extended",
+      "label": "哈基米连唱",
+      "file": "hachimi-extended-loop.mp3",
+      "durationSeconds": 11.498685,
+      "sha256": "80ae3c238ce43b0312c7967646e19727618ff66ff652f5ffc5294673d1b69734",
+      "sourcePage": "https://www.myinstants.com/en/instant/teio-hachimi-extended-64795/",
+      "archiveFile": "assets/audio-originals/mambo/08-teio-hachimi-extended-64795.mp3",
+      "commercialPermission": "unverified"
+    }
+  ],
+  "updatedAt": "2026-10-12",
+  "processingAdditionalTracks": "Existing archived recordings; mono compression and short edge fades; original pitch and speed retained"
 }

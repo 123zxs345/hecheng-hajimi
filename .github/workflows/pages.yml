@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: '24'
       - name: Check behavior
-        run: node --test tests/pages.test.mjs
+        run: node --test tests/*.test.mjs
       - name: Configure Pages
         id: pages
         uses: actions/configure-pages@v5

@@ -9,9 +9,9 @@
       this.user=options.user||'';this.secret=options.secret||'';this.prefix=options.prefix||'hajimi_v1_';
       this.fetch=options.fetch||globalThis.fetch.bind(globalThis);this.configured=!!this.user&&!!this.secret;
     }
-    async call(fields){
+    async call(fields,options={}){
       if(!this.configured)throw new Error('排行榜暂未连接，请稍后再来');
-      const response=await this.fetch(this.endpoint,{method:'POST',body:new URLSearchParams({user:this.user,secret:this.secret,...fields}),signal:AbortSignal.timeout(8000)});
+      const response=await this.fetch(this.endpoint,{method:'POST',body:new URLSearchParams({user:this.user,secret:this.secret,...fields}),signal:AbortSignal.timeout(8000),keepalive:!!options.keepalive});
       if(!response.ok)throw new Error('排行榜暂时连不上，请稍后重试');
       const text=await response.text();
       if(!text.trim()&&fields.action==='update')return null;
@@ -19,9 +19,9 @@
       if(result&&typeof result==='object'&&(result.error||result.status==='error'))throw new Error('排行榜连接配置需要更新');
       return result;
     }
-    async write(tag,value){
+    async write(tag,value,options={}){
       if(!tag.startsWith(this.prefix))throw new Error('数据记录不正确');
-      await this.call({action:'update',tag,value:JSON.stringify(value)});
+      await this.call({action:'update',tag,value:JSON.stringify(value)},options);
     }
     async all(tag){
       if(!tag.startsWith(this.prefix))throw new Error('数据记录不正确');

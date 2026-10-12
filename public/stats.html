@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>合成哈基米 · 游玩统计</title><link rel="icon" href="./favicon.svg"><link rel="stylesheet" href="./web/site.css?v=20261012-v3"></head>
+<body class="stats-page"><header class="stats-header"><div><p class="eyebrow">合成哈基米</p><h1>游玩统计</h1></div><a class="button" href="./">返回游戏</a></header>
+<main class="stats-main"><div class="stats-toolbar"><span id="stats-status" role="status">正在读取云端记录…</span><button id="stats-refresh" class="button">刷新数据</button></div>
+<section class="metrics-grid" aria-label="汇总"><article><span>累计玩家</span><strong id="stat-players">—</strong></article><article><span>今日活跃</span><strong id="stat-active">—</strong></article><article><span>累计游玩时长</span><strong id="stat-time">—</strong></article><article><span>今日游玩时长</span><strong id="stat-today-time">—</strong></article></section>
+<section class="stats-card"><h2>最近 30 天</h2><table class="ranking-table stats-table"><thead><tr><th>日期（北京时间）</th><th>日活玩家</th><th>游玩时长</th></tr></thead><tbody id="stats-days"></tbody></table></section>
+<p class="stats-note">从新版启用后开始记录。首次实际投放才计为玩家，日活按匿名浏览器每天去重；只计前台、有焦点的游玩，暂停、后台、弹窗和连续 60 秒无操作不计时。更换浏览器或清空存储会形成新玩家。记录约每 30 秒同步，离线恢复后补交。</p>
+<p class="stats-note">此页展示汇总数据，不展示玩家昵称或逐个玩家的活动记录。</p></main>
+<script src="./hosting-config.js?v=20261012-v3"></script><script src="./web/tinywebdb.js?v=20261012-v3"></script><script src="./web/analytics.js?v=20261012-v3"></script><script src="./web/stats.js?v=20261012-v3"></script></body></html>

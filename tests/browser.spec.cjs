@@ -9,7 +9,7 @@ async function cloudFixture(context,records=new Map()){
     const start=Number(form.get('no'))-1;await route.fulfill({json:Object.fromEntries(entries.slice(start,start+Number(form.get('count')))),headers:{'access-control-allow-origin':'*'}});
   });
   await context.addInitScript(()=>{window.HajimiTestCloud={endpoint:'https://tinywebdb.appinventor.space/api',user:'test-game',secret:'public-test-key',prefix:'browser_test_'};});
-  await context.route('**/hosting-config.js',route=>route.fulfill({contentType:'text/javascript',body:'window.HajimiHosting={tinywebdb:window.HajimiTestCloud};'}));
+  await context.route('**/hosting-config.js*',route=>route.fulfill({contentType:'text/javascript',body:'window.HajimiHosting={tinywebdb:window.HajimiTestCloud};'}));
   return records;
 }
 async function merge(page){
@@ -124,5 +124,39 @@ test.describe('phone touch controls',()=>{
     const ranks=await page.locator('#panel').boundingBox();
     for(let n=0;n<4;n++)await swipe(session,{x:ranks.x+ranks.width*.5,y:ranks.y+ranks.height*.8},{x:ranks.x+ranks.width*.5,y:ranks.y+ranks.height*.3});
     await expect(page.locator('#ranking-rows tr').last()).toBeInViewport();await expect(page.locator('#dialog-close')).toBeInViewport();
+  });
+});
+
+test.describe('simplified game and activity',()=>{
+  test.use({viewport:{width:393,height:720},isMobile:true,hasTouch:true});
+  test('the board and sprites grow proportionally and the name/audio/music controls are visible',async({page,context})=>{
+    await cloudFixture(context);await page.goto(origin);await expect(page.locator('#sound-toggle')).toBeInViewport();
+    await expect(page.locator('#music-select')).toBeInViewport();await expect(page.locator('#nickname-button')).toContainText('改名');
+    const box=await page.locator('#game').boundingBox();expect(box.width).toBeGreaterThan(350);
+    expect(box.height/box.width).toBeCloseTo(448/400,1);
+    await expect.poll(()=>page.evaluate(()=>gameApp.sprites.filter(sprite=>sprite.ready).length)).toBe(11);await page.screenshot({path:'../../docs/screenshots/hajimi-v3-mobile.png'});
+    await page.locator('#sound-toggle').click();await expect(page.locator('#sound-toggle')).toHaveAttribute('aria-pressed','false');
+    await page.locator('#music-select').selectOption('mambo');await expect.poll(()=>page.evaluate(()=>gameApp.platform.music.audio?.src)).toMatch(/mambo-loop.mp3$/);
+    await page.reload();await expect(page.locator('#music-select')).toHaveValue('mambo');await expect(page.locator('#sound-toggle')).toHaveAttribute('aria-pressed','false');
+  });
+  test('game over directly offers share revival and a voluntary packet of spicy sticks',async({page,context})=>{
+    await cloudFixture(context);await page.goto(origin);await expect(page.locator('#wallet-count')).toHaveText('1');
+    await page.evaluate(()=>{gameApp.core.state='gameover';});
+    await expect(page.locator('#game-result')).toBeVisible();await expect(page.locator('#result-share')).toHaveText('分享获取复活币');
+    await expect(page.locator('#result-support')).toHaveText('送作者一包辣条');
+    await page.screenshot({path:'../../docs/screenshots/hajimi-v3-gameover.png'});
+    await page.locator('#result-share').click();await expect(page.locator('#share-panel')).toBeVisible();await page.locator('#dialog-close').click();
+    await page.locator('#result-support').click();await expect(page.locator('#support-qr')).toBeVisible();await expect(page.locator('#payment-receipt')).toHaveCount(0);
+  });
+  test('actual play writes anonymous activity and the data page shows the daily aggregate',async({page,context})=>{
+    const records=await cloudFixture(context);await page.clock.install();await page.goto(origin);await expect(page.locator('#wallet-count')).toHaveText('1');
+    expect([...records.keys()].filter(key=>key.includes('visitor_')).length).toBe(0);
+    const box=await page.locator('#game').boundingBox();await page.mouse.click(box.x+box.width*.5,box.y+box.height*.5);
+    await page.clock.runFor(4200);await page.evaluate(()=>hajimiAnalytics.flush());
+    expect([...records.keys()].filter(key=>key.includes('visitor_')).length).toBe(1);
+    const activity=[...records].filter(([key])=>key.includes('activity_')).map(([,value])=>JSON.parse(value));expect(activity[0].playMs).toBeGreaterThanOrEqual(3000);
+    const data=await context.newPage();await data.goto(origin+'stats.html');await expect(data.locator('#stat-players')).toHaveText('1');
+    await expect(data.locator('#stat-active')).toHaveText('1');await expect(data.locator('#stats-days tr')).toHaveCount(30);
+    await data.screenshot({path:'../../docs/screenshots/hajimi-v3-statistics.png'});
   });
 });

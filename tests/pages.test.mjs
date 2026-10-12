@@ -58,6 +58,35 @@ test('TinyWebDB accepts its documented empty update acknowledgement',async t=>{
   const rows=await cloud.all('test_hajimi_player_');assert.equal(rows.length,1);assert.equal(rows[0].value.best,3);
 });
 
+test('100000 is eligible, but crossing it invalidates this whole run and restores the previous record',async t=>{
+  const {cloud,records}=await fixture(t);const {PagesService}=modules();let next=1;
+  const service=new PagesService({storage:storage(),cloud,uuid:()=>id(next++)});
+  const player=(await service.request('session',{})).player;
+  const first=await service.request('runs',{});await service.request('score',{runId:first.id,score:3,drops:2});
+  const current=await service.request('runs',{});
+  assert.equal((await service.request('score',{runId:current.id,score:100000,drops:113})).player.best,100000);
+  const rejected=await service.request('score',{runId:current.id,score:100001,drops:114});
+  assert.equal(rejected.accepted,false);assert.equal(rejected.player.best,3);
+  assert.equal(JSON.parse(records.get('test_hajimi_player_'+player.id)).best,3);
+  assert.equal((await service.request('score',{runId:current.id,score:90000,drops:114})).accepted,false);
+  assert.equal((await service.request('ranking')).rows[0].score,3);
+});
+
+test('legacy scores over 100000 are hidden while exactly 100000 remains eligible',async t=>{
+  const {cloud,records}=await fixture(t);const {PagesService}=modules();
+  for(const [n,best] of [[1,100001],[2,100000],[3,99999]])records.set('test_hajimi_player_'+id(n),JSON.stringify({id:id(n),nickname:'猫友'+n,best}));
+  const service=new PagesService({storage:storage(),cloud,uuid:()=>id(9)});
+  assert.deepEqual((await service.request('ranking')).rows.map(row=>row.score),[100000,99999]);
+});
+
+test('a stored legacy over-limit best is cleared and its existing cloud score is withdrawn',async t=>{
+  const {cloud,records}=await fixture(t);const {PagesService}=modules(),saved=storage();
+  saved.setItem('hajimi.pages.v1:test_hajimi_',JSON.stringify({id:id(1),nickname:'旧猫友',best:200000,ledger:{},runs:{},dirty:false,ref:'',inviteSent:false}));
+  records.set('test_hajimi_player_'+id(1),JSON.stringify({id:id(1),nickname:'旧猫友',best:200000}));
+  const service=new PagesService({storage:saved,cloud});assert.equal((await service.request('session')).player.best,0);
+  assert.equal(JSON.parse(records.get('test_hajimi_player_'+id(1))).best,0);assert.equal((await service.request('ranking')).rows.length,0);
+});
+
 test('history-wide top 20 includes older scores past the first cloud page',async t=>{
   const {cloud,records,requests}=await fixture(t);const {PagesService}=modules();
   for(let n=1;n<=130;n++)records.set('test_hajimi_player_'+id(n),JSON.stringify({id:id(n),nickname:'猫友'+n,best:1000-n,updatedAt:n}));

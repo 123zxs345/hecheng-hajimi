@@ -6,6 +6,9 @@
   const validId=value=>typeof value==='string'&&/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/.test(value);
   const day=ms=>Math.floor((ms+28800000)/86400000);
   const nickname=value=>typeof value==='string'?value.trim():'';
+  const maxScore=100000;
+  const eligible=value=>Number.isSafeInteger(value)&&value>=0&&value<=maxScore;
+  const bestOf=state=>Math.max(eligible(state.baseBest)?state.baseBest:0,...Object.values(state.runs).filter(run=>!run.excluded&&eligible(run.score)).map(run=>run.score));
   return class PagesService {
     constructor(options={}){
       this.storage=options.storage||globalThis.localStorage;this.cloud=options.cloud||null;
@@ -17,9 +20,10 @@
     read(){
       let state;try{state=JSON.parse(this.storage.getItem(this.key)||'null');}catch{}
       if(!state||!validId(state.id)||!state.ledger||!state.runs){
-        const id=this.uuid();state={id,nickname:'猫友'+id.slice(-4),best:0,ledger:{},runs:{},createdAt:this.now(),ref:'',inviteSent:false,dirty:false};
+        const id=this.uuid();state={id,nickname:'猫友'+id.slice(-4),best:0,baseBest:0,ledger:{},runs:{},createdAt:this.now(),ref:'',inviteSent:false,dirty:false};
         this.storage.setItem(this.key,JSON.stringify(state));
       }
+      if(state.baseBest===undefined){state.baseBest=eligible(state.best)?state.best:0;state.best=bestOf(state);state.dirty=true;this.storage.setItem(this.key,JSON.stringify(state));}
       return state;
     }
     mutate(change){const state=this.read();change(state);this.storage.setItem(this.key,JSON.stringify(state));return state;}
@@ -48,13 +52,13 @@
     async publishProfile(){
       if(!this.cloud?.configured)throw new Error('排行榜暂未连接，成绩已保存在本机');
       if(this.profileSync)await this.profileSync;
-      const state=this.read();if(state.best<=0||(!state.dirty&&(!state.ref||state.inviteSent)))return;
+      const state=this.read();if((state.best<=0&&!state.dirty)||(!state.dirty&&(!state.ref||state.inviteSent)))return;
       this.profileSync=(async()=>{
         if(state.dirty){
           await this.cloud.write(this.cloud.prefix+'player_'+state.id,{id:state.id,nickname:state.nickname,best:state.best,updatedAt:this.now()});
           this.mutate(current=>{if(current.best===state.best&&current.nickname===state.nickname)current.dirty=false;});
         }
-        if(validId(state.ref)&&state.ref!==state.id&&!state.inviteSent){
+        if(state.best>0&&validId(state.ref)&&state.ref!==state.id&&!state.inviteSent){
           const tag=this.cloud.prefix+'invite_'+state.ref+'_'+state.id;
           const existing=await this.cloud.all(tag);
           if(!existing.some(r=>r.tag===tag))await this.cloud.write(tag,{inviter:state.ref,invitee:state.id,createdAt:this.now()});
@@ -77,7 +81,7 @@
       if(path==='ranking'){
         if(!this.cloud?.configured)throw new Error('排行榜暂未连接，请稍后再来');
         const entries=await this.cloud.all(this.cloud.prefix+'player_');
-        const profiles=entries.map(r=>r.value).filter(r=>validId(r.id)&&r.nickname&&Array.from(r.nickname).length<=12&&Number.isSafeInteger(r.best)&&r.best>0&&r.best<=1000000);
+        const profiles=entries.map(r=>r.value).filter(r=>validId(r.id)&&typeof r.nickname==='string'&&r.nickname&&Array.from(r.nickname).length<=12&&eligible(r.best)&&r.best>0);
         profiles.sort((a,b)=>b.best-a.best||(a.updatedAt||0)-(b.updatedAt||0)||a.id.localeCompare(b.id));
         return {rows:profiles.slice(0,20).map((p,i)=>({rank:i+1,nickname:p.nickname,score:p.best}))};
       }
@@ -89,15 +93,21 @@
       }
       if(path==='runs'&&writing){
         const id=this.uuid(),now=this.now();
-        this.mutate(current=>{current.runs[id]={startedAt:now,score:0,drops:0};const ids=Object.keys(current.runs);for(const old of ids.slice(0,-20))delete current.runs[old];});
+        this.mutate(current=>{current.runs[id]={startedAt:now,score:0,drops:0};const ids=Object.keys(current.runs);for(const old of ids.slice(0,-20)){const run=current.runs[old];if(!run.excluded&&eligible(run.score))current.baseBest=Math.max(current.baseBest,run.score);delete current.runs[old];}});
         return {id};
       }
       if(path==='score'&&writing){
         const run=state.runs[body.runId];if(!run)throw new Error('本局记录不存在');
-        if(!Number.isSafeInteger(body.score)||body.score<0||body.score>1000000||!Number.isSafeInteger(body.drops)||body.drops<run.drops||body.drops>5000||body.score>body.drops*888)throw new Error('分数记录不正确');
-        this.mutate(current=>{const r=current.runs[body.runId];r.score=Math.max(r.score,body.score);r.drops=Math.max(r.drops,body.drops);if(body.score>current.best){current.best=body.score;current.dirty=true;}});
+        if(!Number.isSafeInteger(body.score)||body.score<0||!Number.isSafeInteger(body.drops)||body.drops<0)throw new Error('分数记录不正确');
+        if(body.score>maxScore||run.excluded){
+          this.mutate(current=>{current.runs[body.runId].excluded=true;current.best=bestOf(current);current.dirty=true;});
+          if(this.cloud?.configured)await this.publishProfile();
+          return {accepted:false,reason:'score-limit',player:this.player()};
+        }
+        if(body.drops<run.drops||body.drops>5000||body.score>body.drops*888)throw new Error('分数记录不正确');
+        this.mutate(current=>{const r=current.runs[body.runId];r.score=Math.max(r.score,body.score);r.drops=Math.max(r.drops,body.drops);const best=bestOf(current);if(best!==current.best){current.best=best;current.dirty=true;}});
         if(body.score>0)await this.publishProfile();
-        return {player:this.player()};
+        return {accepted:true,player:this.player()};
       }
       if(path==='spend'&&writing){
         if(!state.runs[body.runId])throw new Error('本局记录不存在');

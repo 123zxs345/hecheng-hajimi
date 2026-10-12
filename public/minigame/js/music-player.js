@@ -38,6 +38,13 @@
       } catch (_) { this.playing = false; }
     }
 
+    setTrack(file) {
+      if(this.destroyed||!file||file===this.options.file)return;
+      const resume=this.playing;this.setPlaying(false);++this.generation;this.options.file=file;
+      if(this.audio){try{this.audio.src=file;this.audio.currentTime=0;}catch(_){}}
+      if(resume)this.setPlaying(true);
+    }
+
     destroy() {
       if (this.destroyed) return;
       this.setPlaying(false);
